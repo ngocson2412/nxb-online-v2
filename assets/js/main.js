@@ -30,6 +30,7 @@ $(document).ready(function() {
     homeSilder.init();
     homeSilderMobile.init();
     lazy_load.init();
+    sweet_alert.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -170,7 +171,7 @@ const menuComponent = {
     },
 }
 
-/* ============================= 16, Home Slider ============================= */
+/* ============================= 4, Home Slider ============================= */
 const homeSilder = {
     init: function() {
         this.homeSlider();
@@ -211,7 +212,7 @@ const homeSilder = {
     }
 }
 
-/* ============================= 17, Home Slider Mobile ============================= */
+/* ============================= 5, Home Slider Mobile ============================= */
 const homeSilderMobile = {
     init: function() {
         this.homeSliderMb();
@@ -251,7 +252,7 @@ const homeSilderMobile = {
         $owl.trigger('refresh.owl.carousel');
     }
 }
-/* ============================= 18, Lazy Load ============================= */
+/* ============================= 6, Lazy Load ============================= */
 const lazy_load = {
     init: function() {
         this.lazy_loading();
@@ -263,6 +264,21 @@ const lazy_load = {
                 threshold: 0
             });
             myLazyLoad.update();
+        })
+    }
+}
+
+/* ============================= 7, Sweet Alert ============================= */
+const sweet_alert = {
+    init: function() {
+        this.sweetAlert();
+    },
+
+    sweetAlert:function(){
+        $('.btn-toast-mess').click(function() {
+            var data = $(this).data('class');
+            $(data).addClass('active');
+            setTimeout(function() { $(data).removeClass('active') }, 3000);
         })
     }
 }
