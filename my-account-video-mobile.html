@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NXB - ban sach</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/css/carousel/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/carousel/owl.theme.default.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CDNSFree/Plyr/plyr.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
   </head>
   <body>
     <div class="wrapper">
@@ -874,11 +875,289 @@
               <i class="fas fa-bars"></i>Xem tất cả danh mục</a></li>
         </ul>
       </div>
-      <div class="bookvideo">
-        <div class="plyr__video-embed video">
-          <video id="player" controls="" crossorigin="" playsinline="" poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg">
-            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576"><a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download="">Download</a>
-          </video>
+      <div class="section">
+                <div class="sidebar-mb"><a class="arrow-back" href="#"><svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.26545 9.64242L8.43291 17.7343C8.79129 18.0886 9.37193 18.0886 9.73121 17.7343C10.0896 17.38 10.0896 16.8045 9.73121 16.4503L2.21159 9.00045L9.73031 1.55064C10.0887 1.19635 10.0887 0.620898 9.73031 0.265715C9.37193 -0.0885717 8.79038 -0.0885717 8.432 0.265715L0.264545 8.3575C-0.0883323 8.70813 -0.0883323 9.29262 0.26545 9.64242Z" fill="#02010E"/></svg></a>
+                  <div class="sidebar-mb__line"></div>
+                  <div class="sidebar-mb__tab">
+                    <h1>Video của bạn</h1>
+                  </div>
+                </div>
+        <div class="mb-2 mt-2">
+          <div class="last-view"> 
+            <h3 class="h3-20 medium">Video bạn xem gần đây nhất</h3>
+            <div class="bookvideo">
+              <div class="plyr__video-embed video">
+                <video controls="" crossorigin="" playsinline="" poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg">
+                  <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576"><a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download="">Download</a>
+                </video>
+              </div>
+            </div>
+            <div class="last-view__info">
+              <div class="row"> 
+                <div class="col-lg-9 col-md-7 col-7">
+                  <h5 class="h5-16 medium"></h5>
+                  <p>Học viện FamHRM</p>
+                  <p> <span>63 bài giảng</span><span class="time">06:32:21</span></p>
+                </div>
+                <div class="col-lg-3 col-md-5 col-5 text-right">
+                  <button class="btn btn-primary btn-sm"><img class="mr-1" src="./assets/images/button/play.svg" alt=""><span>Xem video</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="list-video bg-white rounded">
+            <div class="tabbar">
+              <div class="row ml-0 mr-0 pd-0">
+                <div class="col-lg-9 pl-0 d-flex col-7">
+                  <h3 class="h3-20 medium d-flex align-items-center">Video của bạn</h3>
+                </div>
+                <div class="col-lg-3 pr-0 pl-0 col-5">
+                  <div class="select-dropdown">
+                    <select class="form-control form-control-lg pl-2 mw-100 h6-14 regular">
+                      <option class="h6-14 regular"> Sắp xếp theo</option>
+                      <option class="h6-14 regular"> Theo giá từ thấp đến cao</option>
+                      <option class="h6-14 regular"> Theo giá từ cao đến thấp</option>
+                      <option class="h6-14 regular"> Năm xuất bản</option>
+                      <option class="h6-14 regular"> Theo thời gian</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="tabbar__border">           </div>
+            </div>
+            <div class="row m-0">
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-1">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-2">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-2" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-3">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-3" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-4">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-4" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-5">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-5" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-6">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-6" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-7">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-7" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-8">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-8" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-9">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-9" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-10">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-10" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-11">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-11" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-6 px-2 list-video-item">
+                <div class="list-video-item-div mx-auto position-relative" data-toggle="modal" data-target="#modal-12">
+                  <div class="list-video-item-div-play h-100 w-100 position-absolute"><img class="list-video-item-div-play-button position-relative" src="./assets/images/video-cua-ban/play-button.png" alt=""></div><img class="list-video-item-img img-fluid" src="./assets/images/video-cua-ban/video-1.png" alt="">
+                </div>
+                <div class="list-video-item-description d-flex"><img class="list-video-item-description__author h-100 rounded-circle" src="./assets/images/video-cua-ban/tac-gia.png" alt="">
+                  <div class="list-video-item-description__content">
+                    <p class="list-video-item-description__content-heading medium body-13">Khóa học thiết kế kiến trúc thực hành AWE</p>
+                    <p class="list-video-item-description__content-subheading regular body-13">Học viện FamHRM</p><span class="list-video-item-description__content-total regular body-13">63 bài giảng</span><span class="list-video-item-description__content-time regular body-13">06:32:21</span>
+                  </div>
+                </div>
+                <div class="modal fade" id="modal-12" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                      <div class="modal-body text-center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <section class="footer"> 
@@ -978,6 +1257,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
 <script src="./assets/js/jquery.menu-aim.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="./assets/js/main.js"></script><script src="https://cdn.jsdelivr.net/gh/CDNSFree/Plyr/plyr.js"></script>
+<script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

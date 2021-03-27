@@ -56,6 +56,7 @@ $(document).ready(function () {
     audioPlayer.init();
     collectionSlider.init();
     partnerAuthor.init();
+    nxb_plyr.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -1018,7 +1019,6 @@ const audioPlayer = {
                     durationTime.innerText = "00:00";
                     itemTimeCounter.innerText = "00:00";
                 }
-                songSlider.value = 0;
             })
 
             audio.addEventListener("timeupdate", ()=>{
@@ -1033,7 +1033,8 @@ const audioPlayer = {
                 } else{
                     currentTime.innerText = "0" + mins + ":0" + secs;
                 }
-                songSlider.value = (audio.currentTime / audio.duration) * 100;
+                songSlider.setAttribute('max', Math.floor(audio.duration));
+                songSlider.value = Math.round(audio.currentTime);
                 if(audio.currentTime == audio.duration){
                     musicIndex = musicIndex + 1;
                     currentMusic(musicIndex);
@@ -1237,5 +1238,19 @@ const collectionSlider = {
             margin: 30,
         });
         $owl.trigger("refresh.owl.carousel");
+    },
+};
+/* ============================= 28, plyr============================= */
+const nxb_plyr = {
+    init: function () {
+        this.nxb_plyr_play();
+    },
+    nxb_plyr_play: function () {
+        const video = document.querySelectorAll('video');
+
+        for (var i = 0; i < video.length; i++) {
+            const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
+            window.player = player;
+        }
     },
 };
