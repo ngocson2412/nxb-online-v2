@@ -25,7 +25,9 @@
 - 25, FiX Input Control Mobile
 - 26, Maintain Scroll Postion Partner
 - 27, home dextop parner-author
+-29, active chonbook-MB
 */
+
 /* ============================= 1, init  ============================= */
 $(document).ready(function () {
     scroll.init();
@@ -51,9 +53,9 @@ $(document).ready(function () {
     sweetAlert.init();
     fixScrollBarCheckout.init();
     fixInputControlMobile.init();
+    audioPlayer.init();
     collectionSlider.init();
     partnerAuthor.init();
-
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -257,7 +259,7 @@ const modalAuthor = {
         this.showModal();
     },
     showModal: function () {
-        const btnShow = $(".author-list__more-list");
+        const btnShow = $(".author-list__more-list span");
         const modalOverlay = $(".list__overlay");
         const listContent = $(".list__content");
         const btnClose = $(".list__content-btn");
@@ -312,7 +314,8 @@ const qualityControl = {
 /* ============================= 9, active Choine  ============================= */
 const optionsDetail = {
     init: function () {
-        this.setupDetail(".category-li", ".category-li__item");
+        this.setupDetail(".list-cart .category-li", ".list-cart .category-li__item");
+        this.setupDetail(".list-cart-mb .category-li", ".list-cart-mb  .category-li__item");
     },
     setupDetail: function (main, options) {
         const wrap = document.querySelector(main);
@@ -417,15 +420,17 @@ const typicalSilder = {
         $(".typical__slider").owlCarousel({
             loop: true,
             margin: 30,
+            lazyLoad:true,
             responsive: {
                 0: {
                     items: 2,
+                    nav: false
                 },
                 600: {
                     items: 2,
                 },
                 768: {
-                    items: 3,
+                    items: 3.5,
                 },
                 769: {
                     items: 4,
@@ -433,23 +438,22 @@ const typicalSilder = {
                 1000: {
                     items: 6,
                 },
-                1025: {
+                1024: {
                     items: 5,
                 },
                 1200: {
                     items: 6,
                 },
             },
-            lazyLoad: true,
             autoplay: true,
             autoplayTimeout: 6000,
             autoplayHoverPause: true,
             smartSpeed: 300,
             nav: true,
-            dots: true,
+            dots: false,
             navText: [
-                "<img src='./assets/images/typical-book/prev.svg'>",
-                "<img src='./assets/images/typical-book/next.svg'>",
+                "<img src='./assets/images/collection/prev.png'>",
+                "<img src='./assets/images/collection/next.png'>",
             ],
         });
     },
@@ -871,7 +875,212 @@ const fixScrollBarCheckout = {
         });
     },
 };
-/* ============================= 25, viewmore ============================= */
+
+/* ============================= 25, Audio Player ============================= */
+const audioPlayer = {
+    init:function(){
+        this.audioPlayerFunction();
+    },
+    audioPlayerFunction : function(){
+        const songSlider = document.querySelector('#songSlider');
+        const audio = document.querySelector("#audio");
+        const currentTime = document.querySelector('#current-time');
+        const durationTime = document.querySelector('#duration-time');
+        const playBtn = document.querySelector('.audio-play-btn');
+        const backSongBtn = document.querySelector('#backSongBtn');
+        const next15sBtn = document.querySelector('#next15sBtn');
+        const back15sBtn = document.querySelector('#back15sBtn');
+        const nextSongBtn = document.querySelector('#nextSongBtn');
+        const volumeBtn = document.querySelector('.volumeBtn');
+        const changeSpeeds = document.querySelector('#change--speeds');
+        const changeVolume = document.querySelector('#volumeslider');
+        const srcSongs = document.querySelectorAll('.chaper__list li');
+
+        let musicIndex = 0;
+        let isPlaying = 0;
+        
+        function currentMusic(index){
+            if(srcSongs.length == 0) {
+                return;
+            }
+            if (index >= srcSongs.length) {
+                index = index % srcSongs.length;
+            }
+            if (index < 0) {
+            index = srcSongs.length + index % srcSongs.length;
+            }
+            musicIndex = index;
+            audio.src = srcSongs[index].getAttribute('data-src');
+        }
+
+        $('.chaper__list').on('click','li',function(){
+            var x = this.querySelector('.item-order');
+            $('.chaper__list li.active').removeClass('active');
+            $(this).addClass('active');
+            if(!x.querySelector('img')){
+                var itemOrderImg = document.createElement("IMG");
+                itemOrderImg.setAttribute("src","./assets/images/audio-player/waveform.png");
+                x.appendChild(itemOrderImg);
+            }
+            audio.load();
+            playMusic();
+        })
+        if(playBtn) {
+            playBtn.addEventListener("click",function(){
+                isPlaying ? pauseMusic() : playMusic();
+            });
+        }
+        if(backSongBtn) {
+            backSongBtn.addEventListener("click", function () {
+                musicIndex = musicIndex - 1;
+                currentMusic(musicIndex);
+                playMusic();
+            });
+        }
+
+        if (nextSongBtn) {
+            nextSongBtn.addEventListener("click", function () {
+                musicIndex = musicIndex + 1;
+                currentMusic(musicIndex);
+                playMusic();
+            });
+        }
+        if (changeSpeeds) {
+            changeSpeeds.addEventListener("change",function(e){
+                audio.playbackRate = e.target.value;
+            });
+        }
+        if (changeVolume) {
+            changeVolume.addEventListener("mousemove", function(){
+                audio.volume = changeVolume.value / 100;
+            })
+        }
+        
+        var progressBar = document.querySelector('#range-progressBar');
+        if(changeVolume) {
+            changeVolume.oninput = function(){
+                progressBar.style.width = this.value + "%";
+            }
+        }
+        var progressTiembar = document.querySelector('#range-timeBar');
+        if (songSlider) {
+            songSlider.oninput = function(){
+                progressTiembar.style.width = this.value + "%";
+                playMusic();
+            }
+        }
+        var mutedText = document.querySelector('#muted-volume');
+        if(volumeBtn) {
+            volumeBtn.addEventListener("click",function(){
+                if(audio.muted){
+                    audio.muted = false;
+                    volumeBtn.classList.replace("fa-volume-mute", "fa-volume-up");
+                    changeVolume.value = 100;
+                    progressBar.style.width = changeVolume.value + "%";
+                    mutedText.textContent = "Tắt tiếng";
+                }else{
+                    audio.muted = true;
+                    volumeBtn.classList.replace("fa-volume-up", "fa-volume-mute");
+                    changeVolume.value = 0;
+                    progressBar.style.width = changeVolume.value + "%";
+                    mutedText.textContent = "Bật tiếng";
+                }
+            })
+        }
+
+        currentMusic(musicIndex);
+
+        function playMusic() {
+            isPlaying = true;
+            audio.play();
+            playBtn.classList.replace("fa-play", "fa-pause");
+        }
+
+        function pauseMusic() {
+            isPlaying = false;
+            audio.pause();
+            playBtn.classList.replace("fa-pause", "fa-play");
+        }
+
+        const itemTimeCounter = document.querySelector('.item-time__counter');
+        if (audio) {
+            audio.addEventListener("loadedmetadata", ()=>{
+                let endTime = audio.duration;
+                secs = Math.floor(endTime % 60);
+                mins = Math.floor(endTime / 60);
+                if (secs < 10) {
+                    durationTime.innerText = "0" + mins + ":0" + secs;
+                    itemTimeCounter.innerText = "0" + mins + ":0" + secs;
+                } else if (mins >= 0 && secs >= 0) {
+                    durationTime.innerText = "0" + mins + ":" + secs;
+                    itemTimeCounter.innerText = "0" + mins + ":" + secs;
+                } else {
+                    durationTime.innerText = "00:00";
+                    itemTimeCounter.innerText = "00:00";
+                }
+                songSlider.value = 0;
+            })
+
+            audio.addEventListener("timeupdate", ()=>{
+                progressTiembar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+                let time = Math.round(audio.currentTime);
+                let secs = Math.floor(time % 60);
+                let mins = Math.floor(time / 60);
+                if(secs < 10){
+                    currentTime.innerText = "0" + mins + ":0" + secs;
+                }else if(mins >= 0 && secs >= 0){
+                    currentTime.innerText = "0" + mins + ":" + secs;
+                } else{
+                    currentTime.innerText = "0" + mins + ":0" + secs;
+                }
+                songSlider.value = (audio.currentTime / audio.duration) * 100;
+                if(audio.currentTime == audio.duration){
+                    musicIndex = musicIndex + 1;
+                    currentMusic(musicIndex);
+                    playMusic();
+                }
+            });
+        }
+        if (back15sBtn) {
+            back15sBtn.addEventListener("click",function(){
+                if(audio.currentTime <= 15){
+                    audio.currentTime = 0;
+                }
+                else{
+                    audio.currentTime -= 15;
+                }
+            })
+        }
+        if(next15sBtn) {
+            next15sBtn.addEventListener("click",function(){
+                audio.currentTime += 15;
+                if(audio.currentTime >= audio.duration){
+                    audio.currentTime == audio.duration
+                }
+            })
+        }
+
+        const musicTimebar = document.querySelector(".audio-timebars");
+        if (musicTimebar) {
+            musicTimebar.addEventListener("click", (e) => {
+                let a = e.offsetX;
+                const b = e.srcElement.clientWidth;
+                audio.currentTime = a / b * audio.duration;
+            });
+        }
+
+
+        const btnChapter = document.querySelector('#btnChapter');
+        const chapterList = document.querySelector('.chapter__list-change');
+        if (btnChapter) {
+            btnChapter.addEventListener('click',function(){
+                chapterList.classList.toggle('open');
+            })
+        }
+    }
+}
+
+/* ============================= 26, viewmore ============================= */
 const viewmore = {
     init: function () {
         this.toggleviewmore();
@@ -904,7 +1113,7 @@ const viewmore = {
         });
     },
 };
-/* ============================= 26, Fix Input Control Mobile ============================= */
+/* ============================= 27, Fix Input Control Mobile ============================= */
 const fixInputControlMobile = {
     init: function () {
         this.fixInputControlMobile();
@@ -994,15 +1203,16 @@ const collectionSlider = {
         var $owl = $(".collection-slider .owl-carousel").owlCarousel({
             responsive: {
                 0: {
-                    item: 2,
+                    item: 1.5,
                 },
-                320: {
-                    items: 2,
-                    nav:false,
+                375: {
+                    items: 1.5,
+                },
+                425: {
+                    items: 1.5,
                 },
                 768: {
                     items: 3,
-                    nav:false,
                 },
                 1000: {
                     items: 4,
