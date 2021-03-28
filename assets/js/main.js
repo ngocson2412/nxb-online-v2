@@ -19,7 +19,7 @@
 - 18, checkout cart-mbv2
 - 19, Checkout Modal
 - 20, MegaMenu Modal
-- 21, Fix Pagination 
+- 21, Fix Pagination
 - 23, Sweet Alert
 - 24, FixScrollbarOpenCheckoutModal
 - 25, FiX Input Control Mobile
@@ -424,7 +424,7 @@ const typicalSilder = {
             lazyLoad:true,
             responsive: {
                 0: {
-                    items: 2,
+                    items: 2.5,
                     nav: false
                 },
                 600: {
@@ -899,7 +899,7 @@ const audioPlayer = {
 
         let musicIndex = 0;
         let isPlaying = 0;
-        
+
         function currentMusic(index){
             if(srcSongs.length == 0) {
                 return;
@@ -908,7 +908,7 @@ const audioPlayer = {
                 index = index % srcSongs.length;
             }
             if (index < 0) {
-            index = srcSongs.length + index % srcSongs.length;
+                index = srcSongs.length + index % srcSongs.length;
             }
             musicIndex = index;
             audio.src = srcSongs[index].getAttribute('data-src');
@@ -956,7 +956,7 @@ const audioPlayer = {
                 audio.volume = changeVolume.value / 100;
             })
         }
-        
+
         var progressBar = document.querySelector('#range-progressBar');
         if(changeVolume) {
             changeVolume.oninput = function(){
@@ -1090,7 +1090,7 @@ const viewmore = {
         var partnerAuthor = $(".partner__author-resume");
         var partnerWraper = $(".partner__author-wrapper");
         if($(".partner__author-wrapper").position()){
-        var desPos = $(".partner__author-wrapper").position().top;
+            var desPos = $(".partner__author-wrapper").position().top;
         }
         var btn = $('[data-toggle="collapse"]');
         btn.click(function () {
@@ -1185,13 +1185,13 @@ const partnerAuthor = {
         $('.partner-author .partner-author__slider .owl-nav .owl-prev').html('<img src="assets/images/prevsl.svg" alt="">');
         $('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/nextsl.svg" alt="">');
         $(window).on("resize load",function(){
-			wightScreen=screen.width;
-			if(wightScreen<767){
-				$('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/arrowrmb.svg" alt="">');
-			}else{
-				$('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/nextsl.svg" alt="">');
-			}
-		})
+            wightScreen=screen.width;
+            if(wightScreen<767){
+                $('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/arrowrmb.svg" alt="">');
+            }else{
+                $('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/nextsl.svg" alt="">');
+            }
+        })
     },
 };
 
@@ -1218,7 +1218,7 @@ const collectionSlider = {
                 1000: {
                     items: 4,
                 },
-                
+
             },
             loop: true,
             rewind: false,
