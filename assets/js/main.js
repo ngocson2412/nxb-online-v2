@@ -57,6 +57,8 @@ $(document).ready(function () {
     collectionSlider.init();
     partnerAuthor.init();
     nxb_plyr.init();
+    viewmore.init();
+    subMenuChild.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -1090,9 +1092,9 @@ const viewmore = {
         var partnerAuthor = $(".partner__author-resume");
         var partnerWraper = $(".partner__author-wrapper");
         if($(".partner__author-wrapper").position()){
-            var desPos = $(".partner__author-wrapper").position().top;
+            var desPos = $(".partner__author-wrapper").position().top + 30;
         }
-        var btn = $('[data-toggle="collapse"]');
+        var btn = $('.partner__author-viewmore button[data-toggle="collapse"]');
         btn.click(function () {
             $(this).toggleClass("active");
             if ($(this).hasClass("active")) {
@@ -1252,5 +1254,18 @@ const nxb_plyr = {
             const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
             window.player = player;
         }
+    },
+};
+
+/* ============================= 29, submenu child============================= */
+const subMenuChild = {
+    init: function() {
+        this.subMenuChild();
+    },
+    subMenuChild: function () {
+        $(".submenu__list .list__item .list__link").click(function(){
+            var target = $(this).parent().children(".submenu-child");
+            $(target).slideToggle();
+        });
     },
 };
