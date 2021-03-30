@@ -59,6 +59,8 @@ $(document).ready(function () {
     nxb_plyr.init();
     viewmore.init();
     subMenuChild.init();
+    videoViewerPage.init();
+    list_video.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -1269,3 +1271,32 @@ const subMenuChild = {
         });
     },
 };
+
+/* ============================= 30, Video viewer Display ============================= */
+const videoViewerPage = {
+    init:function() {
+        this.showAccordion();
+    },
+    showAccordion: function(){
+        $('.learning-content').click(function () {
+            $('.roate-icon').toggleClass("active");
+            $('.slidebar-content-left').toggleClass("active");
+            $('.video-detail-text').toggleClass("change--width");
+        })
+
+        $('.panel-change-icon').click(function () {
+            $(this).toggleClass("active");
+        })
+    }
+}
+/* =============================30,btn-show-list-study================================*/
+const list_video ={
+    init: function(){
+        this.list_video();
+    },
+    list_video: function(){
+        $("#btn-list-video").bind('click', function() {
+            $("#list-video").slideToggle();
+        })
+}};
+
