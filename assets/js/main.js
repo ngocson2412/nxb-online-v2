@@ -26,6 +26,8 @@
 - 26, Maintain Scroll Postion Partner
 - 27, home dextop parner-author
 -29, active chonbook-MB
+- 31,cate-filter-mb
+- 32, tab wrapper
 */
 
 /* ============================= 1, init  ============================= */
@@ -61,6 +63,8 @@ $(document).ready(function () {
     subMenuChild.init();
     videoViewerPage.init();
     list_video.init();
+    cate_filter.init();
+    tabWrapper.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -329,9 +333,19 @@ const optionsDetail = {
             optionsBtn.forEach((item, index) =>
                 item.addEventListener("click", () => {
                     item.classList.toggle("active");
+                    if (item.parentNode.className.includes('sach-giay')) {
+                        item.parentNode.classList.toggle('active')
+                        const sachGiayOptions = document.querySelector('.sach-giay__options__wrapper')
+                        if (sachGiayOptions) sachGiayOptions.classList.toggle('active')
+                    }
                 })
             );
         }
+        $(".sach-giay-btn").click(function () {
+            $('.sach-giay__options__wrapper').addClass("active");
+            $('.sach-giay').addClass("active");
+            $('.sach-giay .category-li__item').addClass("active");
+        })
     },
 };
 
@@ -573,8 +587,10 @@ const select_2 = {
             $(".mySelect").select2({
                 data: data,
                 dropdownParent: $(".box-select"),
-                placeholder: "Hà Nội",
+                placeholder: "Tìm đối tác theo tên",
                 dropdownPosition: "below",
+                closeOnSelect : false,
+                tags: true 
             });
             $("#single").one("select2:open", function (e) {
                 $("input.select2-search__field").prop(
@@ -586,6 +602,8 @@ const select_2 = {
                 dropdownParent: $(".author-type"),
                 placeholder: "Tìm tác giả theo tên",
                 dropdownPosition: "below",
+                closeOnSelect : false,
+                tags: true
             });
         });
     },
@@ -599,8 +617,11 @@ const select_2 = {
 
         if (filterBtn && filterOverlay && cancleBtn && closeBtn) {
             filterBtn.click(() => {
-                filterBox.addClass("active");
-                body.addClass("modal-open");
+                $('.cate-filter__dropdow').removeClass("active");
+                setTimeout(function() {
+                    filterBox.addClass("active");
+                    body.addClass("modal-open");
+                }, 300);
             });
             filterOverlay.click(() => {
                 filterBox.removeClass("active");
@@ -1299,4 +1320,59 @@ const list_video ={
             $("#list-video").slideToggle();
         })
 }};
+/* =============================31,cate-filter-mb================================*/
+const cate_filter ={
+    init: function(){
+        this.choose();
+    },
+    choose: function(){
+        $(".cate-filter__control .control-value").click(function(){
+            $(".cate-filter__dropdow").toggleClass('active');
+            if($(".cate-filter__dropdow").hasClass('active')){
+                $('body').css('overflow','hidden');
+            }else{
+                $('body').css('overflow','unset');
+            }
+        })
+        $('.cate-filter__dropdow').click(function(){
+            $(this).removeClass('active');
+            if(!$(".cate-filter__dropdow").hasClass('active')){
+                $('body').css('overflow','unset');
+            }
+        })
+        $('.cate-filter__dropdow li').click(function(){
+            let text=$(this).find('span').html();
+            let value=$(this).find("input[type='radio']").val();
+            let valueSelect=$(this).closest('.cate-filter__control')[0].querySelector(".control-value input");
+            let elementText=$(this).closest('.cate-filter__control')[0].querySelector(".control-value h6");
+            $(valueSelect).attr('value',value);
+            $(elementText).html(text);
+        })
+        $('.cate-filter__button button').click(function(){
+            $('.cate-filter__button button').removeClass('active');
+            $(this).addClass('active');
+        })
+        $('.topview-content-heading.position-relative').click(function(){
+            $('.topview-content-heading.position-relative').removeClass('active');
+            $(this).addClass('active');
+        })
+    }
+};
+/* ============================= 32, Tab Wrapper  ============================= */
 
+const tabWrapper = {
+  init: function() {
+    this.config()
+  },
+  config: function() {
+    const tabItems = $('.tab__wrapper .tab__group .tab__item')
+    const tabMainItems = $('.tab__wrapper .tab__main__group .tab__item')
+
+    tabItems.click(function(e){
+      tabItems.removeClass('active')
+      tabMainItems.removeClass('active')
+      $(this).addClass('active')
+      tabMainItems[$(this).index()].classList.add('active')
+    })
+  }
+}
