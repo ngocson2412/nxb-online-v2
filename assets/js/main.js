@@ -65,6 +65,7 @@ $(document).ready(function () {
     list_video.init();
     cate_filter.init();
     tabWrapper.init();
+    topicMobile.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -436,9 +437,9 @@ const typicalSilder = {
         this.typicalBookSliderMb();
     },
     typicalSilder: function () {
-        $(".typical__slider").owlCarousel({
+        var $owl = $(".typical__slider").owlCarousel({
             loop: true,
-            margin: 30,
+            margin: 16,
             lazyLoad:true,
             responsive: {
                 0: {
@@ -470,11 +471,13 @@ const typicalSilder = {
             smartSpeed: 300,
             nav: true,
             dots: false,
+            autoWidth: false,
             navText: [
                 "<img src='./assets/images/collection/prev.png'>",
                 "<img src='./assets/images/collection/next.png'>",
             ],
         });
+        $owl.trigger("refresh.owl.carousel");
     },
     typicalBookSliderMb: function () {
         $(".typical__book__carousel").owlCarousel({
@@ -796,6 +799,9 @@ const megaMenuOverlay = {
         const overlay = $(".menu__component-overlay");
         const menuBtn = $(".menu__category");
         overlay.css("height", wrap.height());
+        if (menuBtn.hasClass('menu__category-index')) {
+            return;
+        }
         menu.mouseover(function () {
             overlay.show();
         });
@@ -1376,3 +1382,38 @@ const tabWrapper = {
     })
   }
 }
+
+/* ============================= Topic============================= */
+const topicMobile = {
+    init: function () {
+        this.topicSlider();
+    },
+    topicSlider: function () {
+        var $owl = $(".topic-box-mb").owlCarousel({
+            responsive: {
+                0: {
+                    item: 1.5,
+                },
+                375: {
+                    items: 2,
+                },
+                425: {
+                    items: 2.5,
+                },
+            },
+            loop: true,
+            rewind: false,
+            autoplay: true,
+            autoplayTimeout: 6000,
+            autoplayHoverPause: true,
+            smartSpeed: 600,
+            mouseDrag: true,
+            lazyLoad: true,
+            nav: false,
+            dots: false,
+            autoWidth: false,
+            margin: 30,
+        });
+        $owl.trigger("refresh.owl.carousel");
+    },
+};
