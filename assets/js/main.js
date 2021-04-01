@@ -1358,10 +1358,6 @@ const cate_filter ={
             $('.cate-filter__button button').removeClass('active');
             $(this).addClass('active');
         })
-        $('.topview-content-heading.position-relative').click(function(){
-            $('.topview-content-heading.position-relative').removeClass('active');
-            $(this).addClass('active');
-        })
     }
 };
 /* ============================= 32, Tab Wrapper  ============================= */
