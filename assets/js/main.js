@@ -66,6 +66,7 @@ $(document).ready(function () {
     cate_filter.init();
     tabWrapper.init();
     topicMobile.init();
+    border_color.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -411,7 +412,7 @@ const checkout = {
     },
     removeProduct: function () {
         $(".section-checkout__left-item .left-item__delete").click(function () {
-            $($(this).attr("data-id")).fadeOut("slow", function () {
+            $($(this).closest('.section-checkout__left-item')[0]).fadeOut("slow", function () {
                 $(this).remove();
             });
             $(this).fadeOut("slow", function () {
@@ -509,28 +510,15 @@ const cartmobile = {
     },
     clickbtn: function () {
         $(".time-cart-mb").click(function (e) {
-            $(this).next().addClass("active");
+            $(this).find('.choose-time ').toggleClass("active");
             e.stopPropagation();
         });
-        $(".modal-radio__content-group").click(function (e) {
-            let valuaNum = $(this).find(".radio-input").attr("valua");
-            let valuaText = $(this).find(".text").text();
-            $(this)
-                .parents(".modal-radio")
-                .prev()
-                .find(".valua-time")
-                .attr("valua", $.trim(valuaNum));
-            $(this)
-                .parents(".modal-radio")
-                .prev()
-                .find(".time-text")
-                .text($.trim(valuaText));
-            $(".modal-radio").removeClass("active");
-            e.stopPropagation();
-        });
-        $(".modal-radio").click(function () {
-            $(this).removeClass("active");
-        });
+        $('.time-cart-mb .choose-time li').click(function(){
+            let valueChoose=$(this).find("input[type='radio']").attr('value');
+            let valuetext=$(this).find("h6").html();
+            $($(this).closest('.time-cart-mb')[0]).find("input[type='text']").attr('value',valueChoose);
+            $($(this).closest('.time-cart-mb')[0]).find(".time-text").html(valuetext);
+        })
     },
 };
 
@@ -746,19 +734,10 @@ const cartmobilev2 = {
         this.countmb();
     },
     countmb: function () {
-        let elementNum = $(".num-in");
-        for (let i = 0; i < elementNum.length; i++) {
-            if ($(elementNum[i]).attr("number-product") == 0) {
-                $(elementNum[i]).addClass("hide");
-                $(elementNum[i]).find(".in-num").attr("disabled", true);
-                $(elementNum[i]).parents(".left-item__desc-item");
-                if ($(elementNum[i]).parents(".left-item__desc-item")) {
-                    $(elementNum[i])
-                        .parents(".left-item__desc-item")
-                        .find("span.color-33")
-                        .addClass("colorHide");
-                }
-            }
+        var endProduct=$('.section-checkout__left-item').hasClass('--product-end');
+        if(endProduct){
+            $('.section-checkout__left-item.--product-end').find('.num-in .minus,.num-in .plus').off("click")
+            $('.section-checkout__left-item.--product-end').find('.in-num').attr('disabled',true)
         }
     },
 };
@@ -1237,7 +1216,7 @@ const collectionSlider = {
                 0: {
                     item: 1.5,
                 },
-                375: {
+                320: {
                     items: 1.5,
                 },
                 425: {
@@ -1413,3 +1392,21 @@ const topicMobile = {
         $owl.trigger("refresh.owl.carousel");
     },
 };
+/*=============================Change-border-color-chon-book=========================*/
+const border_color ={
+    init: function(){
+        this.border_color();
+    },
+    border_color:function(){
+            const wrap = document.querySelector(".category-li");
+            const optionsBtn = wrap.querySelectorAll(".li-item");
+            optionsBtn.forEach(item1 => {
+                const a = item1.querySelectorAll(".category-li__item");
+                a.forEach(item2 => {
+                    item2.addEventListener('click', () => {
+                        item1.classList.toggle("bd-color");
+                })
+            })},       
+            )       
+        },
+    };
