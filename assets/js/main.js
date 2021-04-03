@@ -66,7 +66,7 @@ $(document).ready(function () {
     cate_filter.init();
     tabWrapper.init();
     topicMobile.init();
-    border_color.init();
+    borderColor.init();
 });
 
 /* ============================= 2, Scroll ============================= */
@@ -325,8 +325,14 @@ const qualityControl = {
 /* ============================= 9, active Choine  ============================= */
 const optionsDetail = {
     init: function () {
-        this.setupDetail(".list-cart .category-li", ".list-cart .category-li__item");
-        this.setupDetail(".list-cart-mb .category-li", ".list-cart-mb  .category-li__item");
+        this.setupDetail(
+            ".list-cart .category-li",
+            ".list-cart .category-li__item"
+        );
+        this.setupDetail(
+            ".list-cart-mb .category-li",
+            ".list-cart-mb  .category-li__item"
+        );
     },
     setupDetail: function (main, options) {
         const wrap = document.querySelector(main);
@@ -335,19 +341,22 @@ const optionsDetail = {
             optionsBtn.forEach((item, index) =>
                 item.addEventListener("click", () => {
                     item.classList.toggle("active");
-                    if (item.parentNode.className.includes('sach-giay')) {
-                        item.parentNode.classList.toggle('active')
-                        const sachGiayOptions = document.querySelector('.sach-giay__options__wrapper')
-                        if (sachGiayOptions) sachGiayOptions.classList.toggle('active')
+                    if (item.parentNode.className.includes("sach-giay")) {
+                        item.parentNode.classList.toggle("active");
+                        const sachGiayOptions = document.querySelector(
+                            ".sach-giay__options__wrapper"
+                        );
+                        if (sachGiayOptions)
+                            sachGiayOptions.classList.toggle("active");
                     }
                 })
             );
         }
         $(".sach-giay-btn").click(function () {
-            $('.sach-giay__options__wrapper').addClass("active");
-            $('.sach-giay').addClass("active");
-            $('.sach-giay .category-li__item').addClass("active");
-        })
+            $(".sach-giay__options__wrapper").addClass("active");
+            $(".sach-giay").addClass("active");
+            $(".sach-giay .category-li__item").addClass("active");
+        });
     },
 };
 
@@ -412,9 +421,12 @@ const checkout = {
     },
     removeProduct: function () {
         $(".section-checkout__left-item .left-item__delete").click(function () {
-            $($(this).closest('.section-checkout__left-item')[0]).fadeOut("slow", function () {
-                $(this).remove();
-            });
+            $($(this).closest(".section-checkout__left-item")[0]).fadeOut(
+                "slow",
+                function () {
+                    $(this).remove();
+                }
+            );
             $(this).fadeOut("slow", function () {
                 $(this).remove();
             });
@@ -441,11 +453,11 @@ const typicalSilder = {
         var $owl = $(".typical__slider").owlCarousel({
             loop: true,
             margin: 16,
-            lazyLoad:true,
+            lazyLoad: true,
             responsive: {
                 0: {
                     items: 2.5,
-                    nav: false
+                    nav: false,
                 },
                 600: {
                     items: 2,
@@ -510,15 +522,19 @@ const cartmobile = {
     },
     clickbtn: function () {
         $(".time-cart-mb").click(function (e) {
-            $(this).find('.choose-time ').toggleClass("active");
+            $(this).find(".choose-time ").toggleClass("active");
             e.stopPropagation();
         });
-        $('.time-cart-mb .choose-time li').click(function(){
-            let valueChoose=$(this).find("input[type='radio']").attr('value');
-            let valuetext=$(this).find("h6").html();
-            $($(this).closest('.time-cart-mb')[0]).find("input[type='text']").attr('value',valueChoose);
-            $($(this).closest('.time-cart-mb')[0]).find(".time-text").html(valuetext);
-        })
+        $(".time-cart-mb .choose-time li").click(function () {
+            let valueChoose = $(this).find("input[type='radio']").attr("value");
+            let valuetext = $(this).find("h6").html();
+            $($(this).closest(".time-cart-mb")[0])
+                .find("input[type='text']")
+                .attr("value", valueChoose);
+            $($(this).closest(".time-cart-mb")[0])
+                .find(".time-text")
+                .html(valuetext);
+        });
     },
 };
 
@@ -580,8 +596,8 @@ const select_2 = {
                 dropdownParent: $(".box-select"),
                 placeholder: "Tìm đối tác theo tên",
                 dropdownPosition: "below",
-                closeOnSelect : false,
-                tags: true 
+                closeOnSelect: false,
+                tags: true,
             });
             $("#single").one("select2:open", function (e) {
                 $("input.select2-search__field").prop(
@@ -593,8 +609,8 @@ const select_2 = {
                 dropdownParent: $(".author-type"),
                 placeholder: "Tìm tác giả theo tên",
                 dropdownPosition: "below",
-                closeOnSelect : false,
-                tags: true
+                closeOnSelect: false,
+                tags: true,
             });
         });
     },
@@ -608,8 +624,8 @@ const select_2 = {
 
         if (filterBtn && filterOverlay && cancleBtn && closeBtn) {
             filterBtn.click(() => {
-                $('.cate-filter__dropdow').removeClass("active");
-                setTimeout(function() {
+                $(".cate-filter__dropdow").removeClass("active");
+                setTimeout(function () {
                     filterBox.addClass("active");
                     body.addClass("modal-open");
                 }, 300);
@@ -734,10 +750,16 @@ const cartmobilev2 = {
         this.countmb();
     },
     countmb: function () {
-        var endProduct=$('.section-checkout__left-item').hasClass('--product-end');
-        if(endProduct){
-            $('.section-checkout__left-item.--product-end').find('.num-in .minus,.num-in .plus').off("click")
-            $('.section-checkout__left-item.--product-end').find('.in-num').attr('disabled',true)
+        var endProduct = $(".section-checkout__left-item").hasClass(
+            "--product-end"
+        );
+        if (endProduct) {
+            $(".section-checkout__left-item.--product-end")
+                .find(".num-in .minus,.num-in .plus")
+                .off("click");
+            $(".section-checkout__left-item.--product-end")
+                .find(".in-num")
+                .attr("disabled", true);
         }
     },
 };
@@ -778,7 +800,7 @@ const megaMenuOverlay = {
         const overlay = $(".menu__component-overlay");
         const menuBtn = $(".menu__category");
         overlay.css("height", wrap.height());
-        if (menuBtn.hasClass('menu__category-index')) {
+        if (menuBtn.hasClass("menu__category-index")) {
             return;
         }
         menu.mouseover(function () {
@@ -889,59 +911,62 @@ const fixScrollBarCheckout = {
 
 /* ============================= 25, Audio Player ============================= */
 const audioPlayer = {
-    init:function(){
+    init: function () {
         this.audioPlayerFunction();
     },
-    audioPlayerFunction : function(){
-        const songSlider = document.querySelector('#songSlider');
+    audioPlayerFunction: function () {
+        const songSlider = document.querySelector("#songSlider");
         const audio = document.querySelector("#audio");
-        const currentTime = document.querySelector('#current-time');
-        const durationTime = document.querySelector('#duration-time');
-        const playBtn = document.querySelector('.audio-play-btn');
-        const backSongBtn = document.querySelector('#backSongBtn');
-        const next15sBtn = document.querySelector('#next15sBtn');
-        const back15sBtn = document.querySelector('#back15sBtn');
-        const nextSongBtn = document.querySelector('#nextSongBtn');
-        const volumeBtn = document.querySelector('.volumeBtn');
-        const changeSpeeds = document.querySelector('#change--speeds');
-        const changeVolume = document.querySelector('#volumeslider');
-        const srcSongs = document.querySelectorAll('.chaper__list li');
+        const currentTime = document.querySelector("#current-time");
+        const durationTime = document.querySelector("#duration-time");
+        const playBtn = document.querySelector(".audio-play-btn");
+        const backSongBtn = document.querySelector("#backSongBtn");
+        const next15sBtn = document.querySelector("#next15sBtn");
+        const back15sBtn = document.querySelector("#back15sBtn");
+        const nextSongBtn = document.querySelector("#nextSongBtn");
+        const volumeBtn = document.querySelector(".volumeBtn");
+        const changeSpeeds = document.querySelector("#change--speeds");
+        const changeVolume = document.querySelector("#volumeslider");
+        const srcSongs = document.querySelectorAll(".chaper__list li");
 
         let musicIndex = 0;
         let isPlaying = 0;
 
-        function currentMusic(index){
-            if(srcSongs.length == 0) {
+        function currentMusic(index) {
+            if (srcSongs.length == 0) {
                 return;
             }
             if (index >= srcSongs.length) {
                 index = index % srcSongs.length;
             }
             if (index < 0) {
-                index = srcSongs.length + index % srcSongs.length;
+                index = srcSongs.length + (index % srcSongs.length);
             }
             musicIndex = index;
-            audio.src = srcSongs[index].getAttribute('data-src');
+            audio.src = srcSongs[index].getAttribute("data-src");
         }
 
-        $('.chaper__list').on('click','li',function(){
-            var x = this.querySelector('.item-order');
-            $('.chaper__list li.active').removeClass('active');
-            $(this).addClass('active');
-            if(!x.querySelector('img')){
+        $(".chaper__list").on("click", "li", function () {
+            var x = this.querySelector(".item-order");
+            $(".chaper__list li.active").removeClass("active");
+            $(this).addClass("active");
+            if (!x.querySelector("img")) {
                 var itemOrderImg = document.createElement("IMG");
-                itemOrderImg.setAttribute("src","./assets/images/audio-player/waveform.png");
+                itemOrderImg.setAttribute(
+                    "src",
+                    "./assets/images/audio-player/waveform.png"
+                );
                 x.appendChild(itemOrderImg);
             }
             audio.load();
             playMusic();
-        })
-        if(playBtn) {
-            playBtn.addEventListener("click",function(){
+        });
+        if (playBtn) {
+            playBtn.addEventListener("click", function () {
                 isPlaying ? pauseMusic() : playMusic();
             });
         }
-        if(backSongBtn) {
+        if (backSongBtn) {
             backSongBtn.addEventListener("click", function () {
                 musicIndex = musicIndex - 1;
                 currentMusic(musicIndex);
@@ -957,46 +982,52 @@ const audioPlayer = {
             });
         }
         if (changeSpeeds) {
-            changeSpeeds.addEventListener("change",function(e){
+            changeSpeeds.addEventListener("change", function (e) {
                 audio.playbackRate = e.target.value;
             });
         }
         if (changeVolume) {
-            changeVolume.addEventListener("mousemove", function(){
+            changeVolume.addEventListener("mousemove", function () {
                 audio.volume = changeVolume.value / 100;
-            })
+            });
         }
 
-        var progressBar = document.querySelector('#range-progressBar');
-        if(changeVolume) {
-            changeVolume.oninput = function(){
+        var progressBar = document.querySelector("#range-progressBar");
+        if (changeVolume) {
+            changeVolume.oninput = function () {
                 progressBar.style.width = this.value + "%";
-            }
+            };
         }
-        var progressTiembar = document.querySelector('#range-timeBar');
+        var progressTiembar = document.querySelector("#range-timeBar");
         if (songSlider) {
-            songSlider.oninput = function(){
+            songSlider.oninput = function () {
                 progressTiembar.style.width = this.value + "%";
                 playMusic();
-            }
+            };
         }
-        var mutedText = document.querySelector('#muted-volume');
-        if(volumeBtn) {
-            volumeBtn.addEventListener("click",function(){
-                if(audio.muted){
+        var mutedText = document.querySelector("#muted-volume");
+        if (volumeBtn) {
+            volumeBtn.addEventListener("click", function () {
+                if (audio.muted) {
                     audio.muted = false;
-                    volumeBtn.classList.replace("fa-volume-mute", "fa-volume-up");
+                    volumeBtn.classList.replace(
+                        "fa-volume-mute",
+                        "fa-volume-up"
+                    );
                     changeVolume.value = 100;
                     progressBar.style.width = changeVolume.value + "%";
                     mutedText.textContent = "Tắt tiếng";
-                }else{
+                } else {
                     audio.muted = true;
-                    volumeBtn.classList.replace("fa-volume-up", "fa-volume-mute");
+                    volumeBtn.classList.replace(
+                        "fa-volume-up",
+                        "fa-volume-mute"
+                    );
                     changeVolume.value = 0;
                     progressBar.style.width = changeVolume.value + "%";
                     mutedText.textContent = "Bật tiếng";
                 }
-            })
+            });
         }
 
         currentMusic(musicIndex);
@@ -1013,9 +1044,9 @@ const audioPlayer = {
             playBtn.classList.replace("fa-pause", "fa-play");
         }
 
-        const itemTimeCounter = document.querySelector('.item-time__counter');
+        const itemTimeCounter = document.querySelector(".item-time__counter");
         if (audio) {
-            audio.addEventListener("loadedmetadata", ()=>{
+            audio.addEventListener("loadedmetadata", () => {
                 let endTime = audio.duration;
                 secs = Math.floor(endTime % 60);
                 mins = Math.floor(endTime / 60);
@@ -1029,23 +1060,24 @@ const audioPlayer = {
                     durationTime.innerText = "00:00";
                     itemTimeCounter.innerText = "00:00";
                 }
-            })
+            });
 
-            audio.addEventListener("timeupdate", ()=>{
-                progressTiembar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+            audio.addEventListener("timeupdate", () => {
+                progressTiembar.style.width =
+                    (audio.currentTime / audio.duration) * 100 + "%";
                 let time = Math.round(audio.currentTime);
                 let secs = Math.floor(time % 60);
                 let mins = Math.floor(time / 60);
-                if(secs < 10){
+                if (secs < 10) {
                     currentTime.innerText = "0" + mins + ":0" + secs;
-                }else if(mins >= 0 && secs >= 0){
+                } else if (mins >= 0 && secs >= 0) {
                     currentTime.innerText = "0" + mins + ":" + secs;
-                } else{
+                } else {
                     currentTime.innerText = "0" + mins + ":0" + secs;
                 }
-                songSlider.setAttribute('max', Math.floor(audio.duration));
+                songSlider.setAttribute("max", Math.floor(audio.duration));
                 songSlider.value = Math.round(audio.currentTime);
-                if(audio.currentTime == audio.duration){
+                if (audio.currentTime == audio.duration) {
                     musicIndex = musicIndex + 1;
                     currentMusic(musicIndex);
                     playMusic();
@@ -1053,22 +1085,21 @@ const audioPlayer = {
             });
         }
         if (back15sBtn) {
-            back15sBtn.addEventListener("click",function(){
-                if(audio.currentTime <= 15){
+            back15sBtn.addEventListener("click", function () {
+                if (audio.currentTime <= 15) {
                     audio.currentTime = 0;
-                }
-                else{
+                } else {
                     audio.currentTime -= 15;
                 }
-            })
+            });
         }
-        if(next15sBtn) {
-            next15sBtn.addEventListener("click",function(){
+        if (next15sBtn) {
+            next15sBtn.addEventListener("click", function () {
                 audio.currentTime += 15;
-                if(audio.currentTime >= audio.duration){
-                    audio.currentTime == audio.duration
+                if (audio.currentTime >= audio.duration) {
+                    audio.currentTime == audio.duration;
                 }
-            })
+            });
         }
 
         const musicTimebar = document.querySelector(".audio-timebars");
@@ -1076,20 +1107,19 @@ const audioPlayer = {
             musicTimebar.addEventListener("click", (e) => {
                 let a = e.offsetX;
                 const b = e.srcElement.clientWidth;
-                audio.currentTime = a / b * audio.duration;
+                audio.currentTime = (a / b) * audio.duration;
             });
         }
 
-
-        const btnChapter = document.querySelector('#btnChapter');
-        const chapterList = document.querySelector('.chapter__list-change');
+        const btnChapter = document.querySelector("#btnChapter");
+        const chapterList = document.querySelector(".chapter__list-change");
         if (btnChapter) {
-            btnChapter.addEventListener('click',function(){
-                chapterList.classList.toggle('open');
-            })
+            btnChapter.addEventListener("click", function () {
+                chapterList.classList.toggle("open");
+            });
         }
-    }
-}
+    },
+};
 
 /* ============================= 26, viewmore ============================= */
 const viewmore = {
@@ -1099,7 +1129,7 @@ const viewmore = {
     toggleviewmore: function () {
         var partnerAuthor = $(".partner__author-resume");
         var partnerWraper = $(".partner__author-wrapper");
-        if($(".partner__author-wrapper").position()){
+        if ($(".partner__author-wrapper").position()) {
             var desPos = $(".partner__author-wrapper").position().top + 30;
         }
         var btn = $('.partner__author-viewmore button[data-toggle="collapse"]');
@@ -1142,66 +1172,72 @@ const fixInputControlMobile = {
     },
 };
 
-
-
 /* ============================= 27, home dextop parner-author============================= */
 const partnerAuthor = {
     init: function () {
         this.partnerAuthorSlider();
     },
     partnerAuthorSlider: function () {
-        $('.partner-author.--partner .partner-author__slider').owlCarousel({
-            loop:true,
-            lazyLoad:true,
-            margin:28,
-            nav:true,
-            dots:false,
-            responsive:{
-                0:{
-                    items:2.3,
-                    margin:22,
-                    nav:true
+        $(".partner-author.--partner .partner-author__slider").owlCarousel({
+            loop: true,
+            lazyLoad: true,
+            margin: 28,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 2.3,
+                    margin: 22,
+                    nav: true,
                 },
-                600:{
-                    items:3,
-                    margin:24
+                600: {
+                    items: 3,
+                    margin: 24,
                 },
-                1000:{
-                    items:5
-                }
+                1000: {
+                    items: 5,
+                },
+            },
+        });
+        $(".partner-author.--author .partner-author__slider").owlCarousel({
+            loop: true,
+            lazyLoad: true,
+            margin: 28,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 2.6,
+                    margin: 15,
+                    nav: true,
+                },
+                600: {
+                    items: 3,
+                    margin: 24,
+                },
+                1000: {
+                    items: 5,
+                },
+            },
+        });
+        $(".partner-author .partner-author__slider .owl-nav .owl-prev").html(
+            '<img src="assets/images/prevsl.svg" alt="">'
+        );
+        $(".partner-author .partner-author__slider .owl-nav .owl-next").html(
+            '<img src="assets/images/nextsl.svg" alt="">'
+        );
+        $(window).on("resize load", function () {
+            wightScreen = screen.width;
+            if (wightScreen < 767) {
+                $(
+                    ".partner-author .partner-author__slider .owl-nav .owl-next"
+                ).html('<img src="assets/images/arrowrmb.svg" alt="">');
+            } else {
+                $(
+                    ".partner-author .partner-author__slider .owl-nav .owl-next"
+                ).html('<img src="assets/images/nextsl.svg" alt="">');
             }
-        })
-        $('.partner-author.--author .partner-author__slider').owlCarousel({
-            loop:true,
-            lazyLoad:true,
-            margin:28,
-            nav:true,
-            dots:false,
-            responsive:{
-                0:{
-                    items:2.6,
-                    margin:15,
-                    nav:true
-                },
-                600:{
-                    items:3,
-                    margin:24
-                },
-                1000:{
-                    items:5
-                }
-            }
-        })
-        $('.partner-author .partner-author__slider .owl-nav .owl-prev').html('<img src="assets/images/prevsl.svg" alt="">');
-        $('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/nextsl.svg" alt="">');
-        $(window).on("resize load",function(){
-            wightScreen=screen.width;
-            if(wightScreen<767){
-                $('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/arrowrmb.svg" alt="">');
-            }else{
-                $('.partner-author .partner-author__slider .owl-nav .owl-next').html('<img src="assets/images/nextsl.svg" alt="">');
-            }
-        })
+        });
     },
 };
 
@@ -1228,7 +1264,6 @@ const collectionSlider = {
                 1000: {
                     items: 4,
                 },
-
             },
             loop: true,
             rewind: false,
@@ -1256,10 +1291,12 @@ const nxb_plyr = {
         this.nxb_plyr_play();
     },
     nxb_plyr_play: function () {
-        const video = document.querySelectorAll('video');
+        const video = document.querySelectorAll("video");
 
         for (var i = 0; i < video.length; i++) {
-            const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
+            const player = new Plyr(video[i], {
+                captions: { active: true, update: true, language: "en" },
+            });
             window.player = player;
         }
     },
@@ -1267,11 +1304,11 @@ const nxb_plyr = {
 
 /* ============================= 29, submenu child============================= */
 const subMenuChild = {
-    init: function() {
+    init: function () {
         this.subMenuChild();
     },
     subMenuChild: function () {
-        $(".submenu__list .list__item .list__link").click(function(){
+        $(".submenu__list .list__item .list__link").click(function () {
             var target = $(this).parent().children(".submenu-child");
             $(target).slideToggle();
         });
@@ -1280,83 +1317,88 @@ const subMenuChild = {
 
 /* ============================= 30, Video viewer Display ============================= */
 const videoViewerPage = {
-    init:function() {
+    init: function () {
         this.showAccordion();
     },
-    showAccordion: function(){
-        $('.learning-content').click(function () {
-            $('.roate-icon').toggleClass("active");
-            $('.slidebar-content-left').toggleClass("active");
-            $('.video-detail-text').toggleClass("change--width");
-        })
+    showAccordion: function () {
+        $(".learning-content").click(function () {
+            $(".roate-icon").toggleClass("active");
+            $(".slidebar-content-left").toggleClass("active");
+            $(".video-detail-text").toggleClass("change--width");
+        });
 
-        $('.panel-change-icon').click(function () {
+        $(".panel-change-icon").click(function () {
             $(this).toggleClass("active");
-        })
-    }
-}
+        });
+    },
+};
 /* =============================30,btn-show-list-study================================*/
-const list_video ={
-    init: function(){
+const list_video = {
+    init: function () {
         this.list_video();
     },
-    list_video: function(){
-        $("#btn-list-video").bind('click', function() {
+    list_video: function () {
+        $("#btn-list-video").bind("click", function () {
             $("#list-video").slideToggle();
-        })
-}};
+        });
+    },
+};
 /* =============================31,cate-filter-mb================================*/
-const cate_filter ={
-    init: function(){
+const cate_filter = {
+    init: function () {
         this.choose();
     },
-    choose: function(){
-        $(".cate-filter__control .control-value").click(function(){
-            $(".cate-filter__dropdow").toggleClass('active');
-            if($(".cate-filter__dropdow").hasClass('active')){
-                $('body').css('overflow','hidden');
-            }else{
-                $('body').css('overflow','unset');
+    choose: function () {
+        $(".cate-filter__control .control-value").click(function () {
+            $(".cate-filter__dropdow").toggleClass("active");
+            if ($(".cate-filter__dropdow").hasClass("active")) {
+                $("body").css("overflow", "hidden");
+            } else {
+                $("body").css("overflow", "unset");
             }
-        })
-        $('.cate-filter__dropdow').click(function(){
-            $(this).removeClass('active');
-            if(!$(".cate-filter__dropdow").hasClass('active')){
-                $('body').css('overflow','unset');
+        });
+        $(".cate-filter__dropdow").click(function () {
+            $(this).removeClass("active");
+            if (!$(".cate-filter__dropdow").hasClass("active")) {
+                $("body").css("overflow", "unset");
             }
-        })
-        $('.cate-filter__dropdow li').click(function(){
-            let text=$(this).find('span').html();
-            let value=$(this).find("input[type='radio']").val();
-            let valueSelect=$(this).closest('.cate-filter__control')[0].querySelector(".control-value input");
-            let elementText=$(this).closest('.cate-filter__control')[0].querySelector(".control-value h6");
-            $(valueSelect).attr('value',value);
+        });
+        $(".cate-filter__dropdow li").click(function () {
+            let text = $(this).find("span").html();
+            let value = $(this).find("input[type='radio']").val();
+            let valueSelect = $(this)
+                .closest(".cate-filter__control")[0]
+                .querySelector(".control-value input");
+            let elementText = $(this)
+                .closest(".cate-filter__control")[0]
+                .querySelector(".control-value h6");
+            $(valueSelect).attr("value", value);
             $(elementText).html(text);
-        })
-        $('.cate-filter__button button').click(function(){
-            $('.cate-filter__button button').removeClass('active');
-            $(this).addClass('active');
-        })
-    }
+        });
+        $(".cate-filter__button button").click(function () {
+            $(".cate-filter__button button").removeClass("active");
+            $(this).addClass("active");
+        });
+    },
 };
 /* ============================= 32, Tab Wrapper  ============================= */
 
 const tabWrapper = {
-  init: function() {
-    this.config()
-  },
-  config: function() {
-    const tabItems = $('.tab__wrapper .tab__group .tab__item')
-    const tabMainItems = $('.tab__wrapper .tab__main__group .tab__item')
+    init: function () {
+        this.config();
+    },
+    config: function () {
+        const tabItems = $(".tab__wrapper .tab__group .tab__item");
+        const tabMainItems = $(".tab__wrapper .tab__main__group .tab__item");
 
-    tabItems.click(function(e){
-      tabItems.removeClass('active')
-      tabMainItems.removeClass('active')
-      $(this).addClass('active')
-      tabMainItems[$(this).index()].classList.add('active')
-    })
-  }
-}
+        tabItems.click(function (e) {
+            tabItems.removeClass("active");
+            tabMainItems.removeClass("active");
+            $(this).addClass("active");
+            tabMainItems[$(this).index()].classList.add("active");
+        });
+    },
+};
 
 /* ============================= Topic============================= */
 const topicMobile = {
@@ -1367,9 +1409,10 @@ const topicMobile = {
         var $owl = $(".topic-box-mb").owlCarousel({
             responsive: {
                 0: {
-                    item: 1.5,
+                    item: 2,
+                    margin: 10,
                 },
-                375: {
+                320: {
                     items: 2,
                 },
                 425: {
@@ -1377,7 +1420,6 @@ const topicMobile = {
                 },
             },
             loop: true,
-            rewind: false,
             autoplay: true,
             autoplayTimeout: 6000,
             autoplayHoverPause: true,
@@ -1386,27 +1428,28 @@ const topicMobile = {
             lazyLoad: true,
             nav: false,
             dots: false,
-            autoWidth: false,
-            margin: 30,
+            margin: 15,
         });
         $owl.trigger("refresh.owl.carousel");
+    }
+}
+/*=============================Change-border-color-chon-book=========================*/
+const borderColor = {
+    init: function () {
+        this.borderColor();
+    },
+    borderColor: function () {
+        const wrap = document.querySelector(".category-li");
+        const optionsBtn = wrap.querySelectorAll(".li-item");
+        if(optionsBtn) {
+            optionsBtn.forEach((item1) => {
+                const a = item1.querySelectorAll(".category-li__item");
+                a.forEach((item2) => {
+                    item2.addEventListener("click", () => {
+                        item1.classList.toggle("bd-color");
+                    });
+                });
+            });
+        }
     },
 };
-/*=============================Change-border-color-chon-book=========================*/
-const border_color ={
-    init: function(){
-        this.border_color();
-    },
-    border_color:function(){
-            const wrap = document.querySelector(".category-li");
-            const optionsBtn = wrap.querySelectorAll(".li-item");
-            optionsBtn.forEach(item1 => {
-                const a = item1.querySelectorAll(".category-li__item");
-                a.forEach(item2 => {
-                    item2.addEventListener('click', () => {
-                        item1.classList.toggle("bd-color");
-                })
-            })},       
-            )       
-        },
-    };
