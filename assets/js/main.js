@@ -1428,7 +1428,7 @@ const topicMobile = {
             lazyLoad: true,
             nav: false,
             dots: false,
-            margin: 15,
+            margin: 16,
         });
         $owl.trigger("refresh.owl.carousel");
     }
