@@ -1440,7 +1440,10 @@ const borderColor = {
     },
     borderColor: function () {
         const wrap = document.querySelector(".category-li");
-        const optionsBtn = wrap.querySelectorAll(".li-item");
+        var optionsBtn;
+        if(wrap){
+            optionsBtn = wrap.querySelectorAll(".li-item");
+        }
         if(optionsBtn) {
             optionsBtn.forEach((item1) => {
                 const a = item1.querySelectorAll(".category-li__item");
