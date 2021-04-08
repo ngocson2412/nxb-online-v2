@@ -913,10 +913,11 @@ const fixScrollBarCheckout = {
 const audioPlayer = {
     init: function () {
         this.audioPlayerFunction();
+
     },
     audioPlayerFunction: function () {
         const songSlider = document.querySelector("#songSlider");
-        const audio = document.querySelector("#audio");
+        const audio = document.querySelector("#main-audio");
         const currentTime = document.querySelector("#current-time");
         const durationTime = document.querySelector("#duration-time");
         const playBtn = document.querySelector(".audio-play-btn");
@@ -927,12 +928,11 @@ const audioPlayer = {
         const volumeBtn = document.querySelector(".volumeBtn");
         const changeSpeeds = document.querySelector("#change--speeds");
         const changeVolume = document.querySelector("#volumeslider");
-        const srcSongs = document.querySelectorAll(".chaper__list li");
-
-        let musicIndex = 0;
+        const srcSongs = $(".chaper__list .chapter__list-item");
         let isPlaying = 0;
-
-        function currentMusic(index) {
+        let musicIndex = 0;
+        
+        function currentMusic(index){
             if (srcSongs.length == 0) {
                 return;
             }
@@ -943,42 +943,116 @@ const audioPlayer = {
                 index = srcSongs.length + (index % srcSongs.length);
             }
             musicIndex = index;
-            audio.src = srcSongs[index].getAttribute("data-src");
+            if (Hls.isSupported()) {
+                var hls = new Hls();
+                audio.src = hls.loadSource(srcSongs[index].getAttribute("data-src"));
+                hls.attachMedia(audio);
+            }
+
+            $(".chaper__list .chapter__list-item.active").removeClass("active");
+            srcSongs[index].classList.add("active");
         }
 
-        $(".chaper__list").on("click", "li", function () {
-            var x = this.querySelector(".item-order");
-            $(".chaper__list li.active").removeClass("active");
-            $(this).addClass("active");
-            if (!x.querySelector("img")) {
-                var itemOrderImg = document.createElement("IMG");
-                itemOrderImg.setAttribute(
-                    "src",
-                    "./assets/images/audio-player/waveform.png"
-                );
-                x.appendChild(itemOrderImg);
-            }
-            audio.load();
-            playMusic();
-        });
+        currentMusic(musicIndex);
+
+        function playMusic() {
+            isPlaying = true;
+            audio.play();
+            playBtn.classList.replace("fa-play", "fa-pause");
+        }
+
+        function pauseMusic() {
+            isPlaying = false;
+            audio.pause();
+            playBtn.classList.replace("fa-pause", "fa-play");
+        }
+
         if (playBtn) {
             playBtn.addEventListener("click", function () {
                 isPlaying ? pauseMusic() : playMusic();
             });
         }
-        if (backSongBtn) {
-            backSongBtn.addEventListener("click", function () {
-                musicIndex = musicIndex - 1;
-                currentMusic(musicIndex);
-                playMusic();
+
+        $(".chaper__list .chapter__list-item").click(function (){
+            if (Hls.isSupported()) {
+                var hls = new Hls();
+                audio.src = hls.loadSource(this.getAttribute('data-src'));
+                hls.attachMedia(audio);
+            }
+
+            var x = $(this).find(".item-order");
+            $(".chaper__list .chapter__list-item.active").removeClass("active");
+            $(this).addClass("active");
+            
+            audio.load();
+            playMusic();
+        });
+
+        if (audio) {
+            audio.addEventListener("loadedmetadata", () => {
+                let endTime = audio.duration;
+                secs = Math.floor(endTime % 60);
+                mins = Math.floor(endTime / 60);
+                if (secs < 10) {
+                    durationTime.innerText = "0" + mins + ":0" + secs;
+                } else if (mins >= 0 && secs >= 0) {
+                    durationTime.innerText = "0" + mins + ":" + secs;
+                } else {
+                    durationTime.innerText = "00:00";
+                }
+            });
+
+            audio.addEventListener("timeupdate", () => {
+                progressTiembar.style.width =
+                    (audio.currentTime / audio.duration) * 100 + "%";
+                let time = Math.round(audio.currentTime);
+                let secs = Math.floor(time % 60);
+                let mins = Math.floor(time / 60);
+                if (secs < 10) {
+                    currentTime.innerText = "0" + mins + ":0" + secs;
+                } else if (mins >= 0 && secs >= 0) {
+                    currentTime.innerText = "0" + mins + ":" + secs;
+                } else {
+                    currentTime.innerText = "0" + mins + ":0" + secs;
+                }
+                songSlider.setAttribute("max", Math.floor(audio.duration));
+                songSlider.value = Math.round(audio.currentTime);
+
+                let endTime = audio.duration;
+                secs = Math.floor(endTime % 60);
+                mins = Math.floor(endTime / 60);
+                if (secs < 10) {
+                    durationTime.innerText = "0" + mins + ":0" + secs;
+                } else if (mins >= 0 && secs >= 0) {
+                    durationTime.innerText = "0" + mins + ":" + secs;
+                } else {
+                    durationTime.innerText = "00:00";
+                }
+                if (audio.currentTime == audio.duration) {
+                    musicIndex = musicIndex + 1;
+                    currentMusic(musicIndex);
+                    playMusic();
+                }
             });
         }
 
         if (nextSongBtn) {
             nextSongBtn.addEventListener("click", function () {
-                musicIndex = musicIndex + 1;
-                currentMusic(musicIndex);
-                playMusic();
+                musicIndex ++;
+                if(musicIndex < srcSongs.length){
+                    currentMusic(musicIndex);
+                    playMusic();
+                }
+            });
+        }
+
+        if (backSongBtn) {
+            backSongBtn.addEventListener("click", function () {
+                musicIndex --;
+                if(musicIndex >= 0){
+                    currentMusic(musicIndex);
+                    playMusic();
+                }
             });
         }
         if (changeSpeeds) {
@@ -1029,61 +1103,7 @@ const audioPlayer = {
                 }
             });
         }
-
-        currentMusic(musicIndex);
-
-        function playMusic() {
-            isPlaying = true;
-            audio.play();
-            playBtn.classList.replace("fa-play", "fa-pause");
-        }
-
-        function pauseMusic() {
-            isPlaying = false;
-            audio.pause();
-            playBtn.classList.replace("fa-pause", "fa-play");
-        }
-
-        const itemTimeCounter = document.querySelector(".item-time__counter");
-        if (audio) {
-            audio.addEventListener("loadedmetadata", () => {
-                let endTime = audio.duration;
-                secs = Math.floor(endTime % 60);
-                mins = Math.floor(endTime / 60);
-                if (secs < 10) {
-                    durationTime.innerText = "0" + mins + ":0" + secs;
-                    itemTimeCounter.innerText = "0" + mins + ":0" + secs;
-                } else if (mins >= 0 && secs >= 0) {
-                    durationTime.innerText = "0" + mins + ":" + secs;
-                    itemTimeCounter.innerText = "0" + mins + ":" + secs;
-                } else {
-                    durationTime.innerText = "00:00";
-                    itemTimeCounter.innerText = "00:00";
-                }
-            });
-
-            audio.addEventListener("timeupdate", () => {
-                progressTiembar.style.width =
-                    (audio.currentTime / audio.duration) * 100 + "%";
-                let time = Math.round(audio.currentTime);
-                let secs = Math.floor(time % 60);
-                let mins = Math.floor(time / 60);
-                if (secs < 10) {
-                    currentTime.innerText = "0" + mins + ":0" + secs;
-                } else if (mins >= 0 && secs >= 0) {
-                    currentTime.innerText = "0" + mins + ":" + secs;
-                } else {
-                    currentTime.innerText = "0" + mins + ":0" + secs;
-                }
-                songSlider.setAttribute("max", Math.floor(audio.duration));
-                songSlider.value = Math.round(audio.currentTime);
-                if (audio.currentTime == audio.duration) {
-                    musicIndex = musicIndex + 1;
-                    currentMusic(musicIndex);
-                    playMusic();
-                }
-            });
-        }
+        
         if (back15sBtn) {
             back15sBtn.addEventListener("click", function () {
                 if (audio.currentTime <= 15) {
@@ -1292,10 +1312,24 @@ const nxb_plyr = {
     },
     nxb_plyr_play: function () {
         const video = document.querySelectorAll("video");
+        const videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+
 
         for (var i = 0; i < video.length; i++) {
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(videoSrc);
+                hls.attachMedia(video[i]);
+                hls.on(Hls.Events.MANIFEST_PARSED, function(){
+                    video[i].play();
+                });
+                window.hls = hls;
+            }
             const player = new Plyr(video[i], {
                 captions: { active: true, update: true, language: "en" },
+            });
+            player.on('languagechange', () => {
+                setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
             });
             window.player = player;
         }
